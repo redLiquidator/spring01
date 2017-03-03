@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.CityMapper">
+<resultMap type="com.example.demain.City" id="cityWithCountry">
+<id property="id" column="city_id"/>
+<result property="countryCode" column="city_country_code"/>
+<result property="district" column="city_district"/>
+<result property="population" column="city_population"/>
+<association property="country" javaType="com.example.domain.Country">
+<id property="code" column="country_code"/>
+<result property="name" column="country_name"/>
+<result property="continent" column="country_continent"/>
+<result property="region" column="country_region"/>
+<result property="sufaceArea" column="country_surface_area"/>
+<result property="indepYear" column="country_indep_year"/>
+<result property="population" column="country_population"/>
+<result property="lifeExpectancy" column="country_life_expectancy"/>
+<result property="gnp" column="country_gnp"/>
+<result property="gnpOld" column="country_gnp_old"/>
+<result property="localName" column="country_local_name"/>
+<result property="governmentForm" column="country_government_form"/>
+<result property="headOfState" column="country_head_of_state"/>
+<result property="capital" column="country_capital"/>
+<result property="code2" column="country_code2"/>
+</association>
+</resultMap>
+<select id="selectAllWithCountry" resultMap="cityWithCountry">
+
+select ci.id as city_id,
+	   ci.countryCode as city_country_code,
+	   ci.district as city_distrtict,
+	   ci.population as city_population,
+	   co.code as country_code,
+	   co.name as country_name,
+       co.continent as country_continent,
+       co.region as country_region,
+       co.sufaceArea as country_surface_area,
+       co.indepYear as country_indep_year,
+       co.population as country_population,
+co.lifeExpectancy as country_life_expectancy,
+co.gnp column as country_gnp,
+co.gnpOld column as country_gnp_old,
+co.localName column as country_code,
+co.governmentForm column as country_code,
+co.headOfState column as country_code,
+co.capital column as country_code,
+co.code2 column as country_code
+</association>
+
+
+
+
+
+
+
+
+</select>
+</mapper>

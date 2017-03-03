@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.EmpMapper">
+
+<resultMap type="com.example.domain.Emp" id="empWithDept">
+<id property="empno" column="emp_empno"/>
+<result property="ename" column="emp_ename"/>
+<result property="job" column="emp_job"/>
+<result property="mgr" column="emp_mgr"/>
+<result property="hiredate" column="emp_hiredate"/>
+<result property="sal" column="emp_sal"/>
+<result property="comm" column="emp_comm"/>
+<result property="deptno" column="emp_deptno"/>
+<association property="dept" javaType="com.example.domain.Dept">
+<id property= "deptno" column="dept_deptno"/>
+<result property="dname" column="dept_dname"/>
+<result property="loc" column="dept_loc"/>
+</association>
+</resultMap>
+<select id="selectAllWithDept" resultMap="empWithDept">
+
+
+
+select e.empno as emp_empno,
+e.ename as emp_ename,
+e.job as emp_job,
+e.mgr as emp_mgr,
+e.hiredate as emp_hiredate,
+e.sal as emp_sal,
+e.comm as emp_comm,
+e.deptno as emp_deptno,
+d.deptno as dept_deptno,
+d.dname as dept_dname,
+d.loc as dept_loc
+from emp e left outer join dept d 
+on d.deptno=e.deptno
+	
+</select>
+</mapper>
