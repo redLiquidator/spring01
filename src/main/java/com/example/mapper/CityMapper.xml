@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.CityMapper">
-<resultMap type="com.example.demain.City" id="cityWithCountry">
+
+<resultMap type="com.example.domain.City" id="cityWithCountry">
 <id property="id" column="city_id"/>
+<result property="name" column="city_name"/>
 <result property="countryCode" column="city_country_code"/>
 <result property="district" column="city_district"/>
 <result property="population" column="city_population"/>
@@ -11,7 +13,7 @@
 <result property="name" column="country_name"/>
 <result property="continent" column="country_continent"/>
 <result property="region" column="country_region"/>
-<result property="sufaceArea" column="country_surface_area"/>
+<result property="surfaceArea" column="country_surface_area"/>
 <result property="indepYear" column="country_indep_year"/>
 <result property="population" column="country_population"/>
 <result property="lifeExpectancy" column="country_life_expectancy"/>
@@ -24,35 +26,88 @@
 <result property="code2" column="country_code2"/>
 </association>
 </resultMap>
+
 <select id="selectAllWithCountry" resultMap="cityWithCountry">
 
-select ci.id as city_id,
-	   ci.countryCode as city_country_code,
-	   ci.district as city_distrtict,
-	   ci.population as city_population,
-	   co.code as country_code,
-	   co.name as country_name,
-       co.continent as country_continent,
-       co.region as country_region,
-       co.sufaceArea as country_surface_area,
-       co.indepYear as country_indep_year,
-       co.population as country_population,
-co.lifeExpectancy as country_life_expectancy,
-co.gnp column as country_gnp,
-co.gnpOld column as country_gnp_old,
-co.localName column as country_code,
-co.governmentForm column as country_code,
-co.headOfState column as country_code,
-co.capital column as country_code,
-co.code2 column as country_code
-</association>
+select c1.id as city_id,
+	   c1.country_code as city_country_code,
+	   c1.district as city_distrtict,
+	   c1.population as city_population,
+	   c2.code as country_code,
+	   c2.name as country_name,
+       c2.continent as country_continent,
+       c2.region as country_region,
+       c2.surface_area as country_surface_area,
+       c2.indep_year as country_indep_year,
+       c2.population as country_population,
+	   c2.life_expectancy as country_life_expectancy,
+	   c2.gnp as country_gnp,
+	   c2.gnp_old as country_gnp_old,
+	   c2.local_name as country_code,
+	   c2.government_form as country_code,
+	   c2.head_of_state as country_code,
+	   c2.capital as country_code,
+	   c2.code2 as country_code
 
-
-
-
-
-
-
-
+from city c1 left outer join country c2
+on c1.country_code=c2.code
+where c1.country_code='KOR'
 </select>
+
+<select id="selectPageWithCountry" resultMap="cityWithCountry">
+
+select c1.id as city_id,
+	   c1.country_code as city_country_code,
+	   c1.district as city_distrtict,
+	   c1.population as city_population,
+	   c2.code as country_code,
+	   c2.name as country_name,
+       c2.continent as country_continent,
+       c2.region as country_region,
+       c2.surface_area as country_surface_area,
+       c2.indep_year as country_indep_year,
+       c2.population as country_population,
+	   c2.life_expectancy as country_life_expectancy,
+	   c2.gnp as country_gnp,
+	   c2.gnp_old as country_gnp_old,
+	   c2.local_name as country_code,
+	   c2.government_form as country_code,
+	   c2.head_of_state as country_code,
+	   c2.capital as country_code,
+	   c2.code2 as country_code
+
+from city c1 left	 outer join country c2
+on c1.country_code=c2.code
+offset #{firstItem}-1 rows 
+fetch next #{itemsPerPage} rows only
+</select>
+
+
+<select id="selectByIdWithCountry" resultMap="cityWithCountry">
+
+select c1.id as city_id,
+	   c1.country_code as city_country_code,
+	   c1.district as city_distrtict,
+	   c1.population as city_population,
+	   c2.code as country_code,
+	   c2.name as country_name,
+       c2.continent as country_continent,
+       c2.region as country_region,
+       c2.surface_area as country_surface_area,
+       c2.indep_year as country_indep_year,
+       c2.population as country_population,
+	   c2.life_expectancy as country_life_expectancy,
+	   c2.gnp as country_gnp,
+	   c2.gnp_old as country_gnp_old,
+	   c2.local_name as country_code,
+	   c2.government_form as country_code,
+	   c2.head_of_state as country_code,
+	   c2.capital as country_code,
+	   c2.code2 as country_code
+
+from city c1 left outer join country c2
+on c1.country_code=c2.code
+where c1.id=#{id}
+</select>
+
 </mapper>

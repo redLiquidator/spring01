@@ -12,6 +12,15 @@ public class City {
 	private String countryCode;
 	private String district;
 	private BigDecimal population;
+	private Country country;
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
 
 	public City() {
 		// TODO Auto-generated constructor stub
