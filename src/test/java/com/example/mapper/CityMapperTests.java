@@ -16,7 +16,8 @@ import com.example.util.Pagination;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class CityMapperTests {
- @Autowired
+
+p;
  CityMapper mapper;
  
  @Test

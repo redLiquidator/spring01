@@ -16,6 +16,7 @@ public class EmpTests {
 		System.out.println("sal="+e.getSal());
 	}
 	
+	
 	@Test
 	public void test01_toString(){
 		Emp e= new Emp();
