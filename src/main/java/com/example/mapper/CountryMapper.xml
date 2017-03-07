@@ -54,11 +54,20 @@ on c1.code=c2.country_code
 where c1.code='KOR'
 
 </select>
+<resultMap type="com.example.domain.Country" id="countryWithCity2">
+	<collection property="cities" column="{a=COUNTRY_CODE}"  select="selectCitiesByCode"/>
+</resultMap>
+<select id="selectCitiesByCode" resultType="com.example.domain.City">
+select *
+from city
+where country_code=#{a}
+</select>
 
-
-
-<select id="selectPageWithCity">
-
+<select  id="selectPageWithCity" resultMap="countryWithCity2">
+select c.*,c.code as country_code 
+from country c
+offset #{firstItem}-1 rows
+fetch next #{itemsPerPage} rows only
 </select>
 
 <select id="selectByCodeWithCity" resultMap="countryWithCity">

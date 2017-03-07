@@ -87,7 +87,7 @@ fetch next #{itemsPerPage} rows only
 
 select c1.id as city_id,
 	   c1.country_code as city_country_code,
-	   c1.district as city_distrtict,
+	   c1.district as city_district,
 	   c1.population as city_population,
 	   c2.code as country_code,
 	   c2.name as country_name,
