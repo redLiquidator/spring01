@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.example.domain.City;
+
 import com.example.domain.Country;
 import com.example.exception.NotFoundRuntimeException;
 import com.example.util.Pagination;
@@ -78,11 +78,11 @@ import com.example.util.Pagination;
 
 		@Test
 		public void test03_selectByCodeWithCity(){
-			City city =mapper.selectByCodeWithCity("STP");
-			
-			if(city==null){
-				throw new NotFoundRuntimeException("City정보가 없습니다.");
-			}
-			System.out.println(city);
+//			City city =mapper.selectByCodeWithCity("STP");
+//			
+//			if(city==null){
+//				throw new NotFoundRuntimeException("City정보가 없습니다.");
+//			}
+//			System.out.println(city);
 			}
 }

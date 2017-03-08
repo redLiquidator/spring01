@@ -17,7 +17,7 @@ import com.example.util.Pagination;
 @RunWith(SpringRunner.class)
 public class CityMapperTests {
 
-p;
+
  CityMapper mapper;
  
  @Test
