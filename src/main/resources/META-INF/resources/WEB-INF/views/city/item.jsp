@@ -8,22 +8,23 @@
 <html>
 <head>
 <meta charset=UTF-8>
-<title>item.jsp</title>
+<title>list.jsp</title>
+
+
+<!-- Code Assist -->
+<c:if test="false">
+<link rel="stylesheet" href="../code_assist/animate.css">
+<link rel="stylesheet" href="../code_assist/bootstrap.css">
+</c:if>
+
 
 </head>
 <body>
-${error}<br>
-${country.code} ${country.name} ${country.population}<br>
-<ol>
-<c:forEach var="city" items="${country.cities}">
-<li>${city.id},${city.name},${city.population}</li>
-<br> 
-</c:forEach>
-</ol>
-
+<h1>city detail Info</h1>
+${city} 
 <hr>
-${country} 
+${city.country}
 <hr>
-
+<a href="/city/page/${param.pageNo}">이전 page list로....</a>
 </body>
 </html>

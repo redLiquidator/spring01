@@ -8,31 +8,59 @@
 <head>
 <meta charset=UTF-8>
 <title>page.jsp</title>
-<!-- 1.animate -->
-<link rel="stylesheet" href="/webjars/animate.css/3.5.2/animate.min.css">
-<!-- 2.bootstrap -->
-<link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
-<!-- 3.jquery -->
-<script type="text/javascript" src="/webjars/jquery/1.11.1/jquery.min.js"></script>
-<!-- 4.bootstrap.js -->
-<script type="text/javascript" src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+
+
+<!-- code_assist -->
+<c:if test="false">
+<link rel="stylesheet" href="../code_assist/animate.css">
+<link rel="stylesheet" href="../code_assist/bootstrap.css">
+</c:if>
 </head>
 <body>
 <c:set var="countries" value="${page.countries}"/>
 <c:set var="paging" value="${page.paging}"/>
-<h1>Country Page List pageNo=${paging.pageNo}</h1>
+<h2>Country Page List pageNo=${paging.pageNo}</h2>
+
+
 <c:forEach var="c" items="${countries}" varStatus="status">
-<b> ${status.index} </b>
-${c.code} ${c.name} ${c.population} <br>
+<table class="table table-condensed">
+<tr>
+<th width="10%"><b> ${status.index} </b></th>
+<th width="20%"> ${c.code} </th>
+<th width="40%"><a href="/country/item/${c.code}">${c.name}</a></th>
+<th width="30%"> ${c.population} <br></th>
+<tr>
+</tr>
+</table>
+
 </c:forEach>
+
+
+
 <hr>
-${paging} 
+<div align="center">
+<button onclick="displayBox(event)" class="btn btn-primary animated bounce">
+${paging}
+</button>
+</div>
+
+
+ 
 <hr>
+
+
+<div align="center">
 <a href="/country/page/${paging.firstPage-1}">prev</a>
 <c:forEach var="i" begin="${paging.firstPage}" end="${paging.lastPage}">
 <a href="/country/page/${i}">${i}</a>
 </c:forEach>
 <a href="/country/page/${paging.lastPage+1}">next</a>
-
+</div>
+<script type="text/javascript">
+function  displayBox(event){
+	$('.btn').toggleClass('btn-danger');
+}
+ 
+</script>
 </body>
 </html>

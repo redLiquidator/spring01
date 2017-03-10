@@ -52,7 +52,7 @@ public class CountrySearchController {
 		System.out.println("map ===>"+map);
 		
 		log.info("getItem("+code+")");
-		try{Country c =countrySearchService.getCountryByCode(code);
+		try{Country c =countrySearchService.getCountryByCode(code,true);
 		model.addAttribute("country",c);}
 		catch(NotFoundRuntimeException e){
 			model.addAttribute("error",e.getMessage());

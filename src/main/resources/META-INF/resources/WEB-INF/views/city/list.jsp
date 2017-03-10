@@ -8,22 +8,22 @@
 <html>
 <head>
 <meta charset=UTF-8>
-<title>item.jsp</title>
+<title>list.jsp</title>
+
+<!-- Code Assist -->
+<c:if test="false">
+<link rel="stylesheet" href="../code_assist/animate.css">
+<link rel="stylesheet" href="../code_assist/bootstrap.css">
+</c:if>
+
 
 </head>
 <body>
-${error}<br>
-${country.code} ${country.name} ${country.population}<br>
+
+<h1>city list</h1>
 <ol>
-<c:forEach var="city" items="${country.cities}">
-<li>${city.id},${city.name},${city.population}</li>
-<br> 
-</c:forEach>
+<c:forEach var="city" items="${cities}">
+<li>${city.id},${city.name},${city.population},${city.country.name}</li></c:forEach>
 </ol>
-
-<hr>
-${country} 
-<hr>
-
 </body>
 </html>
